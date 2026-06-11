@@ -1,0 +1,8 @@
+# NetBridge-CLI 核心依赖
+# 核心功能零依赖，以下为可选依赖分组
+
+# RSS插件
+feedparser>=6.0
+
+# YouTube插件
+yt-dlp>=2024.0

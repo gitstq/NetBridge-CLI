@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "netbridge-cli"
+version = "0.1.0"
+description = "AI Agent多平台互联网能力装配引擎"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "NetBridge Team"},
+]
+keywords = ["ai-agent", "mcp", "web-scraping", "api-client", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+rss = ["feedparser>=6.0"]
+youtube = ["yt-dlp>=2024.0"]
+all = [
+    "feedparser>=6.0",
+    "yt-dlp>=2024.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "mypy>=1.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+netbridge = "netbridge.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/netbridge-cli"
+Repository = "https://github.com/netbridge-cli/netbridge"
+Issues = "https://github.com/netbridge-cli/netbridge/issues"
+
+[tool.setuptools.packages.find]
+include = ["netbridge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP"]
+ignore = ["E501"]
+
+[tool.coverage.run]
+source = ["netbridge"]
+omit = ["tests/*", "*/__init__.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
